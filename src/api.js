@@ -13,6 +13,9 @@ export const usersApi = {
     },
     getUser: (userId) => {
         return axios.get(`${API_SERVER}/users/${userId}`);
+    },
+    updateUser: (userId, userData) => {
+        return axios.put(`${API_SERVER}/users/${userId}`, userData);
     }
 
 }

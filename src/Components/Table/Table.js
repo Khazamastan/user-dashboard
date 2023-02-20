@@ -17,14 +17,16 @@ const Table = ({ data = [], columns = [], actionHandler }) => {
               {columns.map((column) => {
                 if (column.key === "actions") {
                   return (
-                    <td key={column.key} className={column.className}>
+                    <td key={column.key} style={{width: column.width}} className={column.className}>
                       <button
+                        className="edit"
                         onClick={() => actionHandler("EDIT", row, column)}
                       >
                         Edit
                       </button>{" "}
                       |{" "}
                       <button
+                        className="delete"
                         onClick={() => actionHandler("DELETE", row, column)}
                       >
                         Delete
@@ -32,7 +34,7 @@ const Table = ({ data = [], columns = [], actionHandler }) => {
                     </td>
                   );
                 }
-                return <td className={column.className}>{row[column?.key]}</td>;
+                return <td  style={{width: column.width}} className={column.className}>{row[column?.key]}</td>;
               })}
             </tr>
           );

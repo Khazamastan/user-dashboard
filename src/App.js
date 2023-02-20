@@ -3,34 +3,25 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Register from "./Pages/Register";
 import UserList from "./Pages/UserList";
+import MainNav from "./Nav";
 
 export default function App() {
   return (
     <div>
       <BrowserRouter>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route exact path={"/register"}>
-            <Register />
-          </Route>
-          <Route exact path={"/register/:id"} component={Register}/>
-          <Route exact path={"/users"} component={UserList}/>
-          <Route path={"/"}>
-            <h1>Welcome to Register</h1>
-          </Route>
-        </Switch>
+        <MainNav/>
+        <div className="app-container">
+          <Switch>
+            <Route exact path={"/register"}>
+              <Register />
+            </Route>
+            <Route exact path={"/register/:id"} component={Register}/>
+            <Route exact path={"/users"} component={UserList}/>
+            <Route path={"/"}>
+              <h1>Welcome !</h1>
+            </Route>
+          </Switch>
+        </div>
       </BrowserRouter>
     </div>
   );

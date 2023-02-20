@@ -1,5 +1,5 @@
 import "./Form.css"
-const Form = ({ formItems = [], formData = {}, onChangeForm, onSubmit, submitText, formTitle }) => {
+const Form = ({ formItems = [], formData = {}, onChangeForm, onSubmit, submitText, formTitle, resetForm }) => {
   return (
     <div className="form-container">
       <form>
@@ -54,6 +54,9 @@ const Form = ({ formItems = [], formData = {}, onChangeForm, onSubmit, submitTex
         <div className="form-footer">
           <button type="button" onClick={onSubmit}>
             { submitText}
+           </button>
+           <button type="button" className="reset" onClick={resetForm}>
+            Reset
            </button>
         </div>
       </form>

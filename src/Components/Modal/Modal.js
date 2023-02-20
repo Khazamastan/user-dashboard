@@ -18,8 +18,8 @@ const Modal = ({
           <div className="modal-content">{content}</div>
         </div>
         <div class="modal-footer">
-          <button onClick={() => onAction(data)}>{actionText}</button>
-          <button onClick={onCancel}>{cancelText}</button>
+          <button className="button-green" onClick={() => onAction(data)}>{actionText}</button>
+          <button className="button-cancel" onClick={onCancel}>{cancelText}</button>
         </div>
       </div>
     </div>

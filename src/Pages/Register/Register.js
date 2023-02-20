@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import nextId from "react-id-generator";
 import { useHistory, useParams  } from "react-router-dom";
 
-import Form from "../Components/Form";
-import { formItems } from "../constants";
-import { usersApi } from "../api";
-import Spinner from "../Components/Spinner";
+import Form from "../../Components/Form";
+import { formItems } from "../../constants";
+import { usersApi } from "../../api";
+import Spinner from "../../Components/Spinner";
 
 export default function Register(props) {
   const history = useHistory();
@@ -62,7 +62,11 @@ export default function Register(props) {
     // TODO Validation
     let userData = Object.assign({}, { ...formData });
     setLoading(true);
-    usersApi.registerUser(userData).then(function (response) {
+    let api = usersApi.registerUser(userData);
+    if(userId){
+      api = usersApi.updateUser(userId, userData);
+    }
+    api.then(function (response) {
       // navigate to List of Users or show Notification
     history.push("/users");
     })
@@ -88,7 +92,8 @@ export default function Register(props) {
       <Form
         formTitle="Register"
         formData={formData}
-        submitText={userId ? "Update" : "Create"}
+        resetForm={resetFormData}
+        submitText={userId ? "Update User" : "Create User"}
         formItems={formItems}
         onChangeForm={onChangeForm}
         onSubmit={onSubmit}

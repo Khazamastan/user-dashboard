@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory  } from "react-router-dom";
-import Table from "../Components/Table";
-import { tableColumns } from "../constants";
-import Modal from "../Components/Modal";
-import Spinner from "../Components/Spinner";
-import { usersApi } from "../api";
+import Table from "../../Components/Table";
+import { tableColumns } from "../../constants";
+import Modal from "../../Components/Modal";
+import Spinner from "../../Components/Spinner";
+import { usersApi } from "../../api";
 
 export const formActions = {
   EDIT: "EDIT",
@@ -83,6 +83,7 @@ export default function UserList() {
 
   return (
     <div className="user-list">
+      <h1>User List</h1>
       {isFetchingData ? <div className="spinner-container"><Spinner /></div> : null}
       <Table
         data={listOfUsers}

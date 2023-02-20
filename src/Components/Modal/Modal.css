@@ -10,6 +10,11 @@
   bottom: 0;
 }
 
+.modal button {
+  margin: 10px;
+  padding: 10px 10px;
+}
+
 .modal-container {
   background: white;
   width: 450px;
@@ -31,7 +36,29 @@
   text-align: center;
 }
 
-button {
-  margin: 10px;
-  padding: 10px 10px;
+
+
+.modal .button-green {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.modal .button-cancel {
+  border: none;
+  color: #000;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.modal .button-green:hover, .modal .button-cancel:hover {
+  opacity: 0.8;
 }

@@ -77,7 +77,8 @@ export const tableColumns = [
   },
   {
     columnName: "",
-    className: "text-center",
+    width: "10%",
+    className: "table-actions text-center",
     key: "actions",
     cellRenderer: () => {}
   }
