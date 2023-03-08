@@ -5,6 +5,9 @@ import { tableColumns } from "../../constants";
 import Modal from "../../Components/Modal";
 import Spinner from "../../Components/Spinner";
 import { usersApi } from "../../api";
+import { userListSelector} from "../../selectors";
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteUserAction } from "../../actions";
 
 export const formActions = {
   EDIT: "EDIT",
@@ -12,26 +15,12 @@ export const formActions = {
 };
 
 export default function UserList() {
-  const [listOfUsers, setListOfUsers] = useState([]);
+  const dispatch = useDispatch()
+  const listOfUsers = useSelector(userListSelector);
   const [selectedRow, setSelectedRow] = useState(null);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [isFetchingData, setIsFetchingData] = useState(true);
+  const [isFetchingData, setIsFetchingData] = useState(false);
   const history = useHistory();
-
-  const fetchUsers = () => {
-    usersApi.getUsers().then(function (response) {
-      let data = response?.data || [];
-      setListOfUsers(data);
-    })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        setIsFetchingData(false);
-      });
-  }
-
 
   const deleteUser = (userId) => {
     setIsFetchingData(true);
@@ -39,8 +28,7 @@ export default function UserList() {
     usersApi.deleteUser(userId).then(function (response) {
       let rowIndex = listOfUsers.findIndex((item) => item.id === userId);
       if (rowIndex >= 0) {
-        listOfUsers.splice(rowIndex, 1);
-        setListOfUsers([...listOfUsers]);
+        dispatch(deleteUserAction({id : userId}))
       }
       setIsFetchingData(false);
     })
@@ -52,15 +40,8 @@ export default function UserList() {
         setIsFetchingData(false);
       });
   }
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
-  useEffect(() => {
-    if (listOfUsers?.length) {
-      localStorage.setItem("listOfUsers", JSON.stringify(listOfUsers));
-    }
-  }, [listOfUsers]);
+
 
   const deleteRow = (row) => {
     deleteUser(row?.id)
@@ -81,10 +62,10 @@ export default function UserList() {
     }
   };
 
+  console.log("userList", listOfUsers);
+
   return (
     <div className="user-list">
-      <h1>User List</h1>
-      {isFetchingData ? <div className="spinner-container"><Spinner /></div> : null}
       <Table
         data={listOfUsers}
         actionHandler={actionHandler}

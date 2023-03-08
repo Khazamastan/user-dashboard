@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Kyle",
+      "gender": "Male",
+      "age": "60",
+      "address": "#12, Avenue",
+      "mobileNumber": "9887788898",
+      "emailId": "jon.ke@gmail.com",
+      "passport": "IN5324D"
+    },
+    {
+      "id": 3,
+      "firstName": "Test FistName.",
+      "lastName": "Last Test",
+      "gender": "Fe-Male",
+      "age": "23",
+      "address": "#34, ASD, Afr",
+      "mobileNumber": "98798987",
+      "emailId": "mtr@g.com",
+      "passport": "FDSA23T"
+    },
+    {
+      "id": 4,
+      "firstName": "Loading test ",
+      "lastName": "Loading last name",
+      "gender": "Fe-Male",
+      "age": "23",
+      "address": "#54, new area",
+      "mobileNumber": "0980990890",
+      "emailId": "mm@mc.om",
+      "passport": "TRGR34"
+    },
+    {
+      "id": 5,
+      "firstName": "Dan test ",
+      "lastName": "Dan last name",
+      "gender": "Fe-Male",
+      "age": "30",
+      "address": "#54, new area",
+      "mobileNumber": "0980990890",
+      "emailId": "mm@mc.om",
+      "passport": "TRGR34"
+    },
+    {
+      "id": 6,
+      "firstName": "Test",
+      "lastName": "Test",
+      "gender": "Fe-Male",
+      "age": "23",
+      "address": "#123",
+      "mobileNumber": "876978978",
+      "emailId": "mr@mc.com",
+      "passport": "fdaff"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,6 +1,7 @@
 import axios from 'axios';
 const VERSION = ""
 const API_SERVER = 'http://localhost:3000'+ VERSION
+
 export const usersApi = {
     getUsers: () => {
         return axios.get(`${API_SERVER}/users`);
@@ -17,5 +18,4 @@ export const usersApi = {
     updateUser: (userId, userData) => {
         return axios.put(`${API_SERVER}/users/${userId}`, userData);
     }
-
 }

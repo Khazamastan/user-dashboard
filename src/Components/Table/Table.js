@@ -34,7 +34,7 @@ const Table = ({ data = [], columns = [], actionHandler }) => {
                     </td>
                   );
                 }
-                return <td  style={{width: column.width}} className={column.className}>{row[column?.key]}</td>;
+                return <td key={column.key}  style={{width: column.width}} className={column.className}>{row[column?.key]}</td>;
               })}
             </tr>
           );

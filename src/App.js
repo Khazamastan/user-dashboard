@@ -1,42 +1,42 @@
 import "./styles.css";
-import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Register from "./Pages/Register";
 import UserList from "./Pages/UserList";
 import MainNav from "./Nav";
+import { useDispatch, useSelector } from "react-redux";
+import { initGetUsers } from "./actions";
+import Spinner from "./Components/Spinner";
+import { fetchingUsers, errorUsers } from "./selectors";
 
-export default function App() {
+function App() {
+  const dispatch = useDispatch();
+  const isFetchingUserData = useSelector(fetchingUsers);
+  const isErrorFetchingData = useSelector(errorUsers);
+  useEffect(() => {
+    dispatch(initGetUsers());
+  }, []);
+
+
   return (
     <div>
       <BrowserRouter>
-        <MainNav/>
+        <MainNav />
         <div className="app-container">
           <Switch>
-            <Route exact path={"/register"}>
-              <Register />
-            </Route>
-            <Route exact path={"/register/:id"} component={Register}/>
-            <Route exact path={"/users"} component={UserList}/>
+            <Route exact path={"/register"} component={Register} />
+            <Route exact path={"/register/:id"} component={Register} />
+            <Route exact path={"/users"} component={UserList} />
             <Route path={"/"}>
-              <h1>Welcome !</h1>
+              Welcome !
             </Route>
           </Switch>
         </div>
+        {isFetchingUserData ? <div className="spinner-container"><Spinner /></div> : null}
+        {isErrorFetchingData ? <h1>Error Fetching User Data</h1> : null}
       </BrowserRouter>
     </div>
   );
 }
 
-// var studentObject = {
-//   name: "Student 1",
-//   info: { score: { total : 100}},
-//   getName: function () {
-//     var list = [1, 2, 3, 4];
-//     list.forEach((item) => {
-//       console.log("anonymous", this.info.score.total);
-//       console.log(item + "- " + this.name);
-//     });
-//   }
-// };
-
-// studentObject.getName();
+export default App // HOC

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import nextId from "react-id-generator";
 import { useHistory, useParams  } from "react-router-dom";
 
 import Form from "../../Components/Form";
 import { formItems } from "../../constants";
 import { usersApi } from "../../api";
 import Spinner from "../../Components/Spinner";
+import { useDispatch } from "react-redux";
+import { storeUsers, editUserAction} from "../../actions"
 
 export default function Register(props) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const userId = props?.match?.params?.id;
   const [formData, setFormData] = useState({
@@ -62,13 +64,20 @@ export default function Register(props) {
     // TODO Validation
     let userData = Object.assign({}, { ...formData });
     setLoading(true);
-    let api = usersApi.registerUser(userData);
+    let api;
     if(userId){
       api = usersApi.updateUser(userId, userData);
+    }else{
+      api = usersApi.registerUser(userData);
     }
     api.then(function (response) {
       // navigate to List of Users or show Notification
-    history.push("/users");
+      if(userId){
+        dispatch(editUserAction(response.data));
+      }else{
+        dispatch(storeUsers([response.data]))
+      }
+      history.push("/users");
     })
       .catch(function (error) {
         // handle error
