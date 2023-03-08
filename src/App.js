@@ -1,8 +1,9 @@
 import "./styles.css";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Register from "./Pages/Register";
-import UserList from "./Pages/UserList";
+const Register = React.lazy(() => import('./Pages/Register'));
+const UserList = React.lazy(() => import('./Pages/UserList'));
+import ErrorBoundary from "./ErrrorBoundary";
 import MainNav from "./Nav";
 import { useDispatch, useSelector } from "react-redux";
 import { initGetUsers } from "./actions";
@@ -23,14 +24,18 @@ function App() {
       <BrowserRouter>
         <MainNav />
         <div className="app-container">
-          <Switch>
-            <Route exact path={"/register"} component={Register} />
-            <Route exact path={"/register/:id"} component={Register} />
-            <Route exact path={"/users"} component={UserList} />
-            <Route path={"/"}>
-              Welcome !
-            </Route>
-          </Switch>
+          <React.Suspense fallback={<div className="spinner-container"><Spinner /></div>}>
+            <ErrorBoundary>
+              <Switch>
+                <Route exact path={"/register"} component={Register} />
+                <Route exact path={"/register/:id"} component={Register} />
+                <Route exact path={"/users"} component={UserList} />
+                <Route path={"/"}>
+                  Welcome !
+                </Route>
+              </Switch>
+            </ErrorBoundary>
+          </React.Suspense>
         </div>
         {isFetchingUserData ? <div className="spinner-container"><Spinner /></div> : null}
         {isErrorFetchingData ? <h1>Error Fetching User Data</h1> : null}
