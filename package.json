@@ -6,6 +6,10 @@
     "react",
     "starter"
   ],
+  "engines": {
+    "npm": ">=6",
+    "node": ">=12.22.12"
+  },
   "main": "src/index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
