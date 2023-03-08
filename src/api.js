@@ -1,6 +1,6 @@
 import axios from 'axios';
 const VERSION = ""
-const API_SERVER = 'http://localhost:3000'+ VERSION
+const API_SERVER = 'http://localhost:3001'+ VERSION
 
 export const usersApi = {
     getUsers: () => {
