@@ -13,7 +13,6 @@ import { fetchingUsers, errorUsers } from "./selectors";
 function App() {
   const dispatch = useDispatch();
   const isFetchingUserData = useSelector(fetchingUsers);
-  const isErrorFetchingData = useSelector(errorUsers);
   useEffect(() => {
     dispatch(initGetUsers());
   }, []);
@@ -38,7 +37,6 @@ function App() {
           </React.Suspense>
         </div>
         {isFetchingUserData ? <div className="spinner-container"><Spinner /></div> : null}
-        {isErrorFetchingData ? <h1>Error Fetching User Data</h1> : null}
       </BrowserRouter>
     </div>
   );

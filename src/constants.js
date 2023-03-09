@@ -2,7 +2,8 @@ export const formItems = [
   {
     filedName: "First Name",
     type: "text",
-    key: "firstName"
+    key: "firstName",
+    testId: "firstName"
   },
   {
     filedName: "Last Name",

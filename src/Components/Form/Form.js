@@ -5,7 +5,7 @@ const Form = ({ formItems = [], formData = {}, onChangeForm, onSubmit, submitTex
       <form>
         { formTitle && <h1>{formTitle}</h1>}
         {formItems.map((formItem) => {
-          const { filedName, type, key, options } = formItem;
+          const { filedName, type, key, options, testId } = formItem;
           return (
             <div>
               <label>{filedName}</label>
@@ -13,6 +13,7 @@ const Form = ({ formItems = [], formData = {}, onChangeForm, onSubmit, submitTex
                 {type === "text" || type === "number" || type === "email" ? (
                   <input
                     name={key}
+                    data-testid={testId}
                     defaultValue={formData[key]}
                     value={formData[key]}
                     type={type}

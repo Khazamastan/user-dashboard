@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams  } from "react-router-dom";
-
 import Form from "../../Components/Form";
 import { formItems } from "../../constants";
 import { usersApi } from "../../api";
